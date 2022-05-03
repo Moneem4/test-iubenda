@@ -149,7 +149,7 @@ terms : [
 
 ]
 
-exports.termsAndconditionsPage =async (req,res) => {
+exports.termsAndconditionsOfPage =async (req,res) => {
   try{ 
     let bool =false
       const browser = await puppeteer.launch();

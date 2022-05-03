@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const {
-    termsAndconditionsPage
+    termsAndconditionsOfPage
 } = require("../controllers/pageController");
 //create team invitation : member wants to join Team
-router.post('/terms&conditions', termsAndconditionsPage);
+router.post('/termsAndconditionsOfPage', termsAndconditionsOfPage);
 module.exports = router;
