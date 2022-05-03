@@ -1,0 +1,21 @@
+{
+  "name": "test-iubenda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "Moneem Mtiraoui",
+  "license": "ISC",
+  "dependencies": {
+    "acceptedlanguages": "0.0.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16",
+    "puppeteer": "^13.7.0",
+    "puppeteer-core": "^13.7.0"
+  }
+}
