@@ -152,12 +152,15 @@ terms : [
 exports.termsAndconditionsOfPage =async (req,res) => {
   try{ 
     let bool =false
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({headless: false});
   const page = await browser.newPage();
   const {url}=req.body
   await page.goto(url);
+  console.log(page.url());
+  const language = await page.evaluate(() => document.documentElement.lang);
+  console.log("language of opened page :",language)
   let hrefs =await page.$$eval('a',as=>as.map(a=>a.href));
-  console.log("lniks : " ,hrefs)
+  console.log("links : " ,hrefs.length)
 
    for(const h of hrefs)
   {   
@@ -168,7 +171,7 @@ exports.termsAndconditionsOfPage =async (req,res) => {
   { 
      if( h.includes(t))
    { bool =true
-  return  res.status(200).json({ message: "The link :"+h+" contains one of the terms declared in our data above ", link: h });
+  return  res.status(200).json({ message: "The link :"+h+"of the page :"+page.url()+" contains one of the terms declared in our data above ", link: h });
     
    } 
   }
@@ -178,7 +181,7 @@ exports.termsAndconditionsOfPage =async (req,res) => {
   
   if(bool==false)
   {
-   return res.status(404).json({ message: "No link founded that contains one of the terms declared in our data above  " });   
+   return res.status(404).json({ message: "No link founded in "+page.url()+" that contains one of the terms declared in our data above  " });   
   }
  await browser.close();
 } catch (err) {
